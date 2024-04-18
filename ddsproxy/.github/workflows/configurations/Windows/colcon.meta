@@ -1,0 +1,34 @@
+{
+    "names":
+    {
+        "ddsproxy_participants":
+        {
+            "cmake-args":
+            [
+                "-DCMAKE_CXX_FLAGS='/WX /EHsc'",
+                "-Ax64",
+                "-T host=x64"
+            ]
+        },
+
+        "ddsproxy_yaml":
+        {
+            "cmake-args":
+            [
+                "-DCMAKE_CXX_FLAGS='/WX /EHsc'",
+                "-Ax64",
+                "-T host=x64"
+            ]
+        },
+
+        "ddsproxy_tool":
+        {
+            "cmake-args":
+            [
+                "-DCMAKE_CXX_FLAGS='/WX /EHsc'",
+                "-Ax64",
+                "-T host=x64"
+            ]
+        },
+    }
+}

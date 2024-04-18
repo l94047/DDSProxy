@@ -119,7 +119,7 @@ struct DdsPipeConfiguration : public IConfiguration
     //! Whether the DDS Pipe should be initialized enabled.
     bool init_enabled = false;
 
-    //whether this router should sent data
+    //whether this proxy should sent data
     bool master_flag = false;
 
     //! The type of the entity whose discovery should trigger the discovery callbacks.

@@ -144,7 +144,7 @@ constexpr const char* REMOVE_UNUSED_ENTITIES_TAG("remove-unused-entities"); //! 
 constexpr const char* DISCOVERY_TRIGGER_TAG("discovery-trigger"); //! Make the trigger of the DDS Pipe callbacks configurable.
 
 //use related tag
-constexpr const char* MASTER_FLAG_TAG("master_flag");     //!Though create the bridge , don't use it until other router is bad
+constexpr const char* MASTER_FLAG_TAG("master_flag");     //!Though create the bridge , don't use it until other proxy is bad
 
 // XML configuration tags
 constexpr const char* XML_TAG("xml"); //! Tag to read xml configuration

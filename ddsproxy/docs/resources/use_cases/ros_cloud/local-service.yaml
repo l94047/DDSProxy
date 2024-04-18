@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: local-ddsproxy
+spec:
+  ports:
+    - name: UDP-30001
+      protocol: UDP
+      port: 30001
+      targetPort: 30001
+  selector:
+    app: ddsproxy
+  clusterIP: 192.168.1.11  # Private IP only reachable within the k8s cluster to communicate with the ddsproxy application
+  type: ClusterIP

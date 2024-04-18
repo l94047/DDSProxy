@@ -73,7 +73,7 @@ public:
     DDSPIPE_CORE_DllAPI
     virtual void disable() noexcept = 0;
 
-    //!Wether change the router as master
+    //!Wether change the proxy as master
     std::atomic<bool> master_flag_;
 
 protected:
