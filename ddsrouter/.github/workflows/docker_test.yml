@@ -1,0 +1,147 @@
+name: ddsrouter-docker-tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      fastcdr_branch:
+        description: 'Branch or tag of Fast CDR repository (https://github.com/eProsima/Fast-CDR)'
+        required: true
+        default: 'master'
+      fastdds_branch:
+        description: 'Branch or tag of Fast DDS repository (https://github.com/eProsima/Fast-DDS)'
+        required: true
+        default: 'master'
+      ddspipe_branch:
+        description: 'Branch or tag of DDS Pipe repository (https://github.com/eProsima/DDS-Pipe)'
+        required: true
+        default: 'main'
+      ddsrouter_branch:
+        description: 'Branch or tag of DDS Router repository (https://github.com/eProsima/DDS-Router)'
+        required: true
+        default: 'main'
+      dependencies_artifact_postfix:
+        description: 'Postfix name to add to artifact name to download dependencies. This is use to download a specific artifact version from eProsima-CI.'
+        required: true
+        default: '_nightly'
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+
+env:
+  code_packages_names: 'ddsrouter_test'
+  docs_packages_names: ''
+  default_dependencies_artifact_postfix: '_nightly'
+
+jobs:
+  docker-test:
+
+    runs-on: ubuntu-20.04
+
+    env:
+      DEFAULT_FASTCDR_BRANCH: 'master'
+      DEFAULT_FASTDDS_BRANCH: 'master'
+      DEFAULT_DDSPIPE_BRANCH: 'main'
+      DEFAULT_DDSROUTER_BRANCH: 'main'
+      DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE: "ddsrouter:ci"
+      DDSROUTER_COMPOSE_TEST_ROS2_DOCKER_IMAGE: "vulcanexus:ci"
+
+    steps:
+
+      - name: Sync repository
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          path: ${{ github.workspace }}/src
+
+      # Echo Env Var to debug workflow
+      - name: Echo env variables
+        run: |
+          echo "--- Input Variables ---"
+          echo "github.event.inputs.fastcdr_branch: ${{ github.event.inputs.fastcdr_branch }}"
+          echo "github.event.inputs.fastdds_branch: ${{ github.event.inputs.fastdds_branch }}"
+          echo "github.event.inputs.ddspipe_branch: ${{ github.event.inputs.ddspipe_branch }}"
+          echo "github.event.inputs.ddsrouter_branch: ${{ github.event.inputs.ddsrouter_branch }}"
+          echo "--- Github Environment Variables ---"
+          echo "github.head_ref: ${{ github.head_ref }}"
+          echo "--- Environment Variables ---"
+          echo "DEFAULT_FASTCDR_BRANCH: ${{ env.DEFAULT_FASTCDR_BRANCH }}"
+          echo "DEFAULT_FASTDDS_BRANCH: ${{ env.DEFAULT_FASTDDS_BRANCH }}"
+          echo "DEFAULT_DDSPIPE_BRANCH: ${{ env.DEFAULT_DDSPIPE_BRANCH }}"
+          echo "DEFAULT_DDSROUTER_BRANCH: ${{ env.DEFAULT_DDSROUTER_BRANCH }}"
+
+      # Build Vulcanexus Docker image
+      - name: Build custom Vulcanexus Docker image
+        run: |
+          cd ./src/.github/docker/vulcanexus
+          docker build \
+            --no-cache \
+            --build-arg docker_image_base=eprosima/vulcanexus:humble-core \
+            -t ${{ env.DDSROUTER_COMPOSE_TEST_ROS2_DOCKER_IMAGE }} \
+            -f Dockerfile .
+
+      # Build DDS Router Docker image
+      - name: Build DDS Router Docker image
+        run: |
+          cd ./src/.github/docker/ddsrouter
+          docker build \
+            --no-cache \
+            --build-arg fastcdr_branch=${{ github.event.inputs.fastcdr_branch || env.DEFAULT_FASTCDR_BRANCH }} \
+            --build-arg fastdds_branch=${{ github.event.inputs.fastdds_branch || env.DEFAULT_FASTDDS_BRANCH }} \
+            --build-arg ddspipe_branch=${{ github.event.inputs.ddspipe_branch || env.DEFAULT_DDSPIPE_BRANCH }} \
+            --build-arg ddsrouter_branch=${{ github.event.inputs.ddsrouter_branch || github.head_ref || env.DEFAULT_DDSROUTER_BRANCH }} \
+            -t ${{ env.DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE }} \
+            -f Dockerfile .
+          echo "DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE: ${{ env.DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE }}"
+
+      # Check Docker images exist
+      - name: Check if Docker images exist
+        run: |
+          [ -n "$(docker images -q ${{ env.DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE }})" ] || echo "DDS Router Docker image does not exists"
+          [ -n "$(docker images -q ${{ env.DDSROUTER_COMPOSE_TEST_ROS2_DOCKER_IMAGE }})" ] || echo "Vulcanexus image does not exists"
+
+      - name: Download dependencies and install requirements
+        uses: ./src/.github/actions/project_dependencies
+        with:
+          os: ubuntu-20.04
+          cmake_build_type: "Release"
+          dependencies_artifact_postfix: ${{ github.event.inputs.dependencies_artifact_postfix || env.default_dependencies_artifact_postfix }}
+          secret_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compile docker tests
+        uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
+        with:
+          workspace: ${{ github.workspace }}
+          colcon_build_args: --packages-up-to ddsrouter_test
+          cmake_args: -DBUILD_COMPOSE_TESTS=ON -DCMAKE_BUILD_TYPE=Release
+          workspace_dependencies: ${{ github.workspace }}/install
+          colcon_meta_file: ${{ github.workspace }}/src/.github/workflows/configurations/${{ runner.os }}/colcon.meta
+
+      # Run ddsrouter_test compose tests
+      - name: Run flaky tests
+        continue-on-error: true
+        run: |
+          export DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE=${{ env.DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE }}
+          export DDSROUTER_COMPOSE_TEST_ROS2_DOCKER_IMAGE=${{ env.DDSROUTER_COMPOSE_TEST_ROS2_DOCKER_IMAGE }}
+          source ${{ github.workspace }}/install/setup.bash
+          colcon test \
+            --packages-select ddsrouter_test \
+            --event-handlers console_direct+ \
+            --return-code-on-test-failure \
+            --ctest-args \
+              --label-regex xfail \
+              --timeout 120
+
+      - name: Run tests
+        run: |
+          export DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE=${{ env.DDSROUTER_COMPOSE_TEST_DOCKER_IMAGE }}
+          export DDSROUTER_COMPOSE_TEST_ROS2_DOCKER_IMAGE=${{ env.DDSROUTER_COMPOSE_TEST_ROS2_DOCKER_IMAGE }}
+          source ${{ github.workspace }}/install/setup.bash
+          colcon test \
+            --packages-select ddsrouter_test \
+            --event-handlers console_direct+ \
+            --return-code-on-test-failure \
+            --ctest-args \
+              --label-exclude xfail \
+              --timeout 120
