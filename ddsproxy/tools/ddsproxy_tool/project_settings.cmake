@@ -40,9 +40,6 @@ set(MODULE_DEPENDENCIES
 set(MODULE_THIRDPARTY_HEADERONLY
     optionparser)
 
-set(MODULE_RESOURCES_PATH
-    "../../resources")
-
 set(MODULE_THIRDPARTY_PATH
     "../../thirdparty")
 

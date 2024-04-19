@@ -66,13 +66,7 @@ compile_library(
     "${PROJECT_SOURCE_DIR}/include" # Include directory
 )
 
-###############################################################################
-# Test
-###############################################################################
-# Compile tests if CMake options requires it
-compile_test_library(
-    "${PROJECT_SOURCE_DIR}/test" # Test directory
-)
+
 
 ###############################################################################
 # Packaging
