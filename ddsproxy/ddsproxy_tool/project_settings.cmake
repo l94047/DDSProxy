@@ -41,13 +41,13 @@ set(MODULE_THIRDPARTY_HEADERONLY
     optionparser)
 
 set(MODULE_THIRDPARTY_PATH
-    "../../thirdparty")
+    "../thirdparty")
 
 set(MODULE_LICENSE_FILE_PATH
-    "../../LICENSE")
+    "../LICENSE")
 
 set(MODULE_VERSION_FILE_PATH
-    "../../VERSION")
+    "../VERSION")
 
 set(MODULE_TARGET_NAME
     "ddsproxy")
