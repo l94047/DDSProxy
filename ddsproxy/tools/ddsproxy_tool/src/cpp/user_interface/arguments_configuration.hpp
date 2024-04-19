@@ -118,7 +118,7 @@ extern const option::Descriptor usage[];
  * @param [out] file_path path to the configuration file
  * @param [out] reload_time time in milliseconds to reload the configuration file
  * @param [out] activate_debug activate log info
- * @param [out] timeout time in milliseconds to maximum router execution time
+ * @param [out] timeout time in milliseconds to maximum proxy execution time
  *
  * @return \c SUCCESS if everything OK
  * @return \c INCORRECT_ARGUMENT if arguments were incorrect (unknown or incorrect value)

@@ -50,7 +50,7 @@ generic_create_participant(
         const std::shared_ptr<ddspipe::participants::ParticipantConfiguration>& participant_configuration,
         Args... args)
 {
-    participant_configuration->app_id = "DDS_ROUTER";
+    participant_configuration->app_id = "DDS_PROXY";
     participant_configuration->app_metadata = "";
 
     std::shared_ptr<ConfigurationT> conf_ =

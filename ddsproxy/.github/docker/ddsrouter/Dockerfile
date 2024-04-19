@@ -55,7 +55,7 @@ RUN echo "fastcdr branch: <${fastcdr_branch}>" && \
     echo "ddsproxy branch: <${ddsproxy_branch}>"
 
 RUN mkdir src && \
-    wget https://raw.githubusercontent.com/eProsima/DDS-Router/${ddsproxy_branch}/ddsproxy.repos && \
+    wget https://raw.githubusercontent.com/eProsima/DDS-Proxy/${ddsproxy_branch}/ddsproxy.repos && \
     vcs import src < ddsproxy.repos && \
     cd src/fastcdr && git checkout ${fastcdr_branch} && cd ../.. && \
     cd src/fastdds && git checkout ${fastdds_branch} && cd ../.. && \

@@ -168,10 +168,10 @@ protected:
 
     const std::shared_ptr<SimpleParticipantConfiguration> configuration_;
 
-    //! DDS Router shared Payload Pool
+    //! DDS Proxy shared Payload Pool
     const std::shared_ptr<core::PayloadPool> payload_pool_;
 
-    //! DDS Router shared Discovery Database
+    //! DDS Proxy shared Discovery Database
     const std::shared_ptr<core::DiscoveryDatabase> discovery_database_;
 };
 

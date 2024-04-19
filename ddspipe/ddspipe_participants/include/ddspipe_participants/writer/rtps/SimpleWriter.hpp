@@ -48,7 +48,7 @@ public:
      * @note use protected constructor so this class is not called but from subclasses
      * (Basically make abstract class without a pure virtual function).
      *
-     * @param participant_id    Router Id of the Participant that has created this SimpleWriter.
+     * @param participant_id    Proxy Id of the Participant that has created this SimpleWriter.
      * @param topic             Topic that this SimpleWriter subscribes to.
      * @param payload_pool      Shared Payload Pool to received data and take it.
      * @param rtps_participant  RTPS Participant pointer (this is not stored).

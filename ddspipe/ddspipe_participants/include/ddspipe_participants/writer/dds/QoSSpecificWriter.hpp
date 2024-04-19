@@ -36,7 +36,7 @@ public:
      *
      * Get the Attributes and TopicQoS and create the QoSSpecificWriter History and the RTPS QoSSpecificWriter.
      *
-     * @param participant_id    Router Id of the Participant that has created this QoSSpecificWriter.
+     * @param participant_id    Proxy Id of the Participant that has created this QoSSpecificWriter.
      * @param topic             Topic that this QoSSpecificWriter subscribes to.
      * @param payload_pool      Shared Payload Pool to received data and take it.
      * @param participant       DDS Participant pointer.

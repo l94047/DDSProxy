@@ -17,7 +17,7 @@
 #include <fastrtps/rtps/common/Guid.h>
 #include <cpp_utils/Log.hpp>
 
-#include <types/dds/RouterCacheChange.hpp>
+#include <types/dds/ProxyCacheChange.hpp>
 #include <ddspipe_participants/writer/rtps/filter/RepeaterDataFilter.hpp>
 
 namespace eprosima {
@@ -39,8 +39,8 @@ bool RepeaterDataFilter::is_relevant(
         return false;
     }
 
-    // As ChangePool is our own, and we use RouterCacheChange, we can cast this without problem
-    const auto& change_ref = static_cast<const core::types::RouterCacheChange&>(change);
+    // As ChangePool is our own, and we use ProxyCacheChange, we can cast this without problem
+    const auto& change_ref = static_cast<const core::types::ProxyCacheChange&>(change);
 
     bool is_relevant = change_ref.last_writer_guid_prefix != reader_guid.guidPrefix;
 

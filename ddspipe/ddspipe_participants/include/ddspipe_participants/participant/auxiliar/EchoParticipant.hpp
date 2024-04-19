@@ -53,7 +53,7 @@ protected:
     //! Reference to alias access of this object configuration without casting every time
     const std::shared_ptr<EchoParticipantConfiguration> configuration_;
 
-    //! DDS Router shared Discovery Database
+    //! DDS Proxy shared Discovery Database
     const std::shared_ptr<core::DiscoveryDatabase> discovery_database_;
 };
 

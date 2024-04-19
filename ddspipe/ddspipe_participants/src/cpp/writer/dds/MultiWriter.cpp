@@ -24,7 +24,7 @@
 
 #include <ddspipe_participants/writer/dds/MultiWriter.hpp>
 #include <ddspipe_participants/writer/dds/QoSSpecificWriter.hpp>
-#include <ddspipe_participants/types/dds/RouterCacheChange.hpp>
+#include <ddspipe_participants/types/dds/ProxyCacheChange.hpp>
 
 namespace eprosima {
 namespace ddspipe {

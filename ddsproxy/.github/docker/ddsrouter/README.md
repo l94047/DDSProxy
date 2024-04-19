@@ -1,4 +1,4 @@
-# DDS ROUTER TEST DOCKER
+# DDS PROXY TEST DOCKER
 
 In order to build this docker image, use command in current directory:
 

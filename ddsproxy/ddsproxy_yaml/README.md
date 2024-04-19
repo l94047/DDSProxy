@@ -1,3 +1,3 @@
-# eProsima DDS Router Yaml Library
+# eProsima DDS Proxy Yaml Library
 
 > TODO

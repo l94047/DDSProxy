@@ -38,7 +38,7 @@ const option::Descriptor usage[] = {
         "",
         "",
         Arg::None,
-        "Usage: Fast DDS Router \n" \
+        "Usage: Fast DDS Proxy \n" \
         "Connect different DDS networks via DDS through LAN or WAN.\n" \
         "It will build a communication bridge between the different " \
         "Participants included in the provided configuration file.\n" \
@@ -87,7 +87,7 @@ const option::Descriptor usage[] = {
         "config-path",
         Arg::Readable_File,
         "  -c \t--config-path\t  \t" \
-        "Path to the Configuration File (yaml format) [Default: ./DDS_ROUTER_CONFIGURATION.yaml]."
+        "Path to the Configuration File (yaml format) [Default: ./DDS_PROXY_CONFIGURATION.yaml]."
     },
 
     {
@@ -109,7 +109,7 @@ const option::Descriptor usage[] = {
         "timeout",
         Arg::Numeric,
         "  -t \t--timeout\t  \t" \
-        "Set a maximum time in seconds for the Router to run. " \
+        "Set a maximum time in seconds for the Proxy to run. " \
         "Value 0 does not set maximum. [Default: 0]."
     },
 
@@ -164,7 +164,7 @@ const option::Descriptor usage[] = {
 
 void print_version()
 {
-    std::cout << "DDS Router " << DDSPROXY_CORE_VERSION_STRING << "\ncommit hash: " << DDSPROXY_CORE_COMMIT_HASH <<
+    std::cout << "DDS Proxy " << DDSPROXY_CORE_VERSION_STRING << "\ncommit hash: " << DDSPROXY_CORE_COMMIT_HASH <<
         std::endl;
 }
 

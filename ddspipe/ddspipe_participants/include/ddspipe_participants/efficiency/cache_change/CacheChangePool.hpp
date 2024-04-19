@@ -24,7 +24,7 @@ namespace ddspipe {
 namespace core {
 
 /**
- * @brief This class implements a pool of CacheChange objects specialized as RouterCacheChanges.
+ * @brief This class implements a pool of CacheChange objects specialized as ProxyCacheChanges.
  *
  * It reuses the UnboundedPool implementation, what allow to create an unbounded reusable pool.
  *
@@ -54,7 +54,7 @@ public:
 
 protected:
 
-    //! Override the UnboundedPool::create_element method to create a RouterCacheChange object.
+    //! Override the UnboundedPool::create_element method to create a ProxyCacheChange object.
     virtual fastrtps::rtps::CacheChange_t* new_element_() override;
 
 };

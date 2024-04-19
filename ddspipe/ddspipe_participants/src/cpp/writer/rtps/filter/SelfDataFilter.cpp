@@ -17,7 +17,7 @@
 #include <fastrtps/rtps/common/Guid.h>
 #include <cpp_utils/Log.hpp>
 
-#include <types/dds/RouterCacheChange.hpp>
+#include <types/dds/ProxyCacheChange.hpp>
 #include <ddspipe_participants/writer/rtps/filter/SelfDataFilter.hpp>
 
 namespace eprosima {

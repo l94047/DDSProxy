@@ -26,7 +26,7 @@ namespace ddsproxy {
 namespace ui {
 
 //! Default DdsProxy configuration file
-constexpr const char* DEFAULT_CONFIGURATION_FILE_NAME("DDS_ROUTER_CONFIGURATION.yaml");
+constexpr const char* DEFAULT_CONFIGURATION_FILE_NAME("DDS_PROXY_CONFIGURATION.yaml");
 
 } /* namespace ui */
 } /* namespace ddsproxy */

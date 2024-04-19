@@ -31,7 +31,7 @@ namespace core {
 namespace types {
 
 /**
- * Data struct that uses wildcards (*, ?) to filter a DDS Router.
+ * Data struct that uses wildcards (*, ?) to filter a DDS Proxy.
  */
 struct WildcardDdsFilterTopic : public IFilterTopic
 {

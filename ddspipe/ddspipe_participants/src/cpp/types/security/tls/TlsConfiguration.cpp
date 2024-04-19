@@ -120,7 +120,7 @@ void TlsConfiguration::enable_tls_server(
     descriptor->tls_config.password = private_key_file_password;
     // Private key
     descriptor->tls_config.private_key_file = private_key_file;
-    // DDS-Router certificate
+    // DDS-Proxy certificate
     descriptor->tls_config.cert_chain_file = certificate_chain_file;
     // DH
     descriptor->tls_config.tmp_dh_file = dh_params_file;

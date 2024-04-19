@@ -22,7 +22,7 @@
 
 #include <ddspipe_participants/efficiency/cache_change/CacheChangePool.hpp>
 #include <ddspipe_participants/writer/dds/SimpleWriter.hpp>
-#include <ddspipe_participants/types/dds/RouterCacheChange.hpp>
+#include <ddspipe_participants/types/dds/ProxyCacheChange.hpp>
 
 namespace eprosima {
 namespace ddspipe {

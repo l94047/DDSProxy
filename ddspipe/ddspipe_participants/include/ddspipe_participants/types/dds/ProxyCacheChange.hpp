@@ -33,7 +33,7 @@ namespace types {
  * This Change is required to be used for features:
  * - Repeater participant: avoid redirecting the message to the source participant.
  */
-struct RouterCacheChange : public fastrtps::rtps::CacheChange_t
+struct ProxyCacheChange : public fastrtps::rtps::CacheChange_t
 {
 public:
 

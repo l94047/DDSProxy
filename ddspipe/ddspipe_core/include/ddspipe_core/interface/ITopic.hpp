@@ -29,7 +29,7 @@ namespace ddspipe {
 namespace core {
 
 /**
- * Generic data struct that represents an ITopic of data flow in the Router.
+ * Generic data struct that represents an ITopic of data flow in the Proxy.
  */
 class ITopic
 {

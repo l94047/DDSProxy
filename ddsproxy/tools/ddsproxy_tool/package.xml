@@ -4,7 +4,7 @@
   <name>ddsproxy_tool</name>
   <version>2.0.0</version>
   <description>
-     *eprosima DDS Router* Application to execute a DDS Router from a YAML configuration file.
+     *eprosima DDS Proxy* Application to execute a DDS Proxy from a YAML configuration file.
   </description>
   
   <license file="LICENSE">Apache 2.0</license>

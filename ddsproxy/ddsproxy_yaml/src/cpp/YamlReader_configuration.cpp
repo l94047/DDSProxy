@@ -54,7 +54,7 @@ void YamlReader::fill(
     }
 
     ////
-    //Get router use configurations, should the writer send data
+    //Get proxy use configurations, should the writer send data
     if(YamlReader::is_tag_present(yml, MASTER_FLAG_TAG))
     {
         object.master_flag = YamlReader::get<bool>(yml, MASTER_FLAG_TAG, version);
@@ -273,7 +273,7 @@ void YamlReader::fill(
     object.ddspipe_configuration.discovery_trigger = object.advanced_options.discovery_trigger;
 
     /**
-     * master_flag is attributes of RouterConfiguration,
+     * master_flag is attributes of ProxyConfiguration,
      *  but since they are used in the DdsPipe,
      * we should copy it to the DdsPipeConfiguration
     */

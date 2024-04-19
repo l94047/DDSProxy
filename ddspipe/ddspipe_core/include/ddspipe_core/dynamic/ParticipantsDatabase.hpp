@@ -26,7 +26,7 @@ namespace ddspipe {
 namespace core {
 
 /**
- * @brief Database to store collectively all the Participants of the Router
+ * @brief Database to store collectively all the Participants of the Proxy
  *
  * This class will be shared between all Bridges so they have access to the Participants.
  */
