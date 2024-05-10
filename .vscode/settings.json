@@ -4,5 +4,9 @@
         "*.ipp": "cpp",
         "condition_variable": "cpp",
         "future": "cpp"
+    },
+
+    "files.exclude": {
+        "install":true,
     }
 }
