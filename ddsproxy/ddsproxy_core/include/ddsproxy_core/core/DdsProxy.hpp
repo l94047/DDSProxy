@@ -47,7 +47,7 @@ public:
      * - Create Participants and add them to \c ParticipantsDatabase
      * - Create the Bridges for (allowed) builtin topics
      *
-     * @param [in] configuration : Configuration for the new DDS Router
+     * @param [in] configuration : Configuration for the new DDS Proxy
      *
      * @throw \c ConfigurationException in case the yaml inside allowlist is not well-formed
      * @throw \c InitializationException in case \c IParticipants , \c IWriters or \c IReaders creation fails.
@@ -80,7 +80,7 @@ public:
             const DdsProxyConfiguration& configuration);
 
     /**
-     * @brief Start communication in DDS Router
+     * @brief Start communication in DDS Proxy
      *
      * Enable every topic Bridge.
      *
@@ -91,7 +91,7 @@ public:
     DDSPROXY_CORE_DllAPI utils::ReturnCode start() noexcept;
 
     /**
-     * @brief Stop communication in DDS Router
+     * @brief Stop communication in DDS Proxy
      *
      * Disable every topic Bridge.
      *

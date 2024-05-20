@@ -96,7 +96,7 @@ public:
      * @brief Take oldest received message from the Reader
      *
      * This method will take the oldest sample received by the Reader and will set it to the argument \c data
-     * in a way that the payload in \c data must be inside the DDS Router PayloadPool.
+     * in a way that the payload in \c data must be inside the DDS Proxy PayloadPool.
      * In \c data,  the Guid of the Endpoint that originally sent this data must be specified.
      *
      * @param [out] data : object where the payload received should be copied (referenced)

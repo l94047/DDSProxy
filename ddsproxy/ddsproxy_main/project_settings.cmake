@@ -13,14 +13,14 @@
 # limitations under the License.
 
 ###############################################################################
-# Set settings for project ddsproxy_yaml
+# Set settings for project ddsproxy_tool
 ###############################################################################
 
 set(MODULE_NAME
-    ddsproxy_yaml)
+ddsproxy_tool)
 
 set(MODULE_SUMMARY
-    "C++ library to build and run a DDS Proxy.")
+    "C++ application to run a DDS Proxy from a YAML configuration file.")
 
 set(MODULE_FIND_PACKAGES
     yaml-cpp
@@ -30,10 +30,24 @@ set(MODULE_FIND_PACKAGES
     ddspipe_core
     ddspipe_participants
     ddspipe_yaml
-    ddsproxy_core)
-
-set(fastrtps_MINIMUM_VERSION "2.8")
+    ddsproxy_core
+    ddsproxy_yaml
+)
 
 set(MODULE_DEPENDENCIES
-    $<$<BOOL:${WIN32}>:iphlpapi$<SEMICOLON>Shlwapi>
     ${MODULE_FIND_PACKAGES})
+
+set(MODULE_THIRDPARTY_HEADERONLY
+    optionparser)
+
+set(MODULE_THIRDPARTY_PATH
+    "../thirdparty")
+
+set(MODULE_LICENSE_FILE_PATH
+    "../LICENSE")
+
+set(MODULE_VERSION_FILE_PATH
+    "../VERSION")
+
+set(MODULE_TARGET_NAME
+    "ddsproxy")

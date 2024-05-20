@@ -1,6 +1,12 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp"
+    },
+
+    "files.exclude": {
+        "install":true,
     }
 }

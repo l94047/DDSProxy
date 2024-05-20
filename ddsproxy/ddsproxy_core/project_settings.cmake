@@ -20,7 +20,7 @@ set(MODULE_NAME
     ddsproxy_core)
 
 set(MODULE_SUMMARY
-    "C++ library to build and run a DDS Router.")
+    "C++ library to build and run a DDS Proxy.")
 
 set(MODULE_FIND_PACKAGES
     fastcdr

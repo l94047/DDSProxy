@@ -43,7 +43,7 @@ public:
      *
      * Get the Attributes and TopicQoS and create the MultiWriter History and the RTPS MultiWriter.
      *
-     * @param participant_id    Router Id of the Participant that has created this MultiWriter.
+     * @param participant_id    Proxy Id of the Participant that has created this MultiWriter.
      * @param topic             Topic that this MultiWriter subscribes to.
      * @param payload_pool      Shared Payload Pool to received data and take it.
      * @param rtps_participant  RTPS Participant pointer (this is not stored).

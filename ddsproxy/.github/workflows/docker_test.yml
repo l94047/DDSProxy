@@ -16,7 +16,7 @@ on:
         required: true
         default: 'main'
       ddsproxy_branch:
-        description: 'Branch or tag of DDS Router repository (https://github.com/eProsima/DDS-Router)'
+        description: 'Branch or tag of DDS Proxy repository (https://github.com/eProsima/DDS-Proxy)'
         required: true
         default: 'main'
       dependencies_artifact_postfix:
@@ -81,8 +81,8 @@ jobs:
             -t ${{ env.DDSPROXY_COMPOSE_TEST_ROS2_DOCKER_IMAGE }} \
             -f Dockerfile .
 
-      # Build DDS Router Docker image
-      - name: Build DDS Router Docker image
+      # Build DDS Proxy Docker image
+      - name: Build DDS Proxy Docker image
         run: |
           cd ./src/.github/docker/ddsproxy
           docker build \
@@ -98,7 +98,7 @@ jobs:
       # Check Docker images exist
       - name: Check if Docker images exist
         run: |
-          [ -n "$(docker images -q ${{ env.DDSPROXY_COMPOSE_TEST_DOCKER_IMAGE }})" ] || echo "DDS Router Docker image does not exists"
+          [ -n "$(docker images -q ${{ env.DDSPROXY_COMPOSE_TEST_DOCKER_IMAGE }})" ] || echo "DDS Proxy Docker image does not exists"
           [ -n "$(docker images -q ${{ env.DDSPROXY_COMPOSE_TEST_ROS2_DOCKER_IMAGE }})" ] || echo "Vulcanexus image does not exists"
 
       - name: Download dependencies and install requirements

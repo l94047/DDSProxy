@@ -30,7 +30,7 @@ namespace ddsproxy {
 namespace core {
 
 /**
- * This data struct contains the values for advance configuration of the DDS Router such as:
+ * This data struct contains the values for advance configuration of the DDS Proxy such as:
  * - Number of threads to Thread Pool
  * - Default maximum history depth
  */
@@ -66,7 +66,7 @@ struct SpecsConfiguration : public ddspipe::core::IConfiguration
     bool remove_unused_entities = false;
     
     ////
-    //should this router is using as master or as backup 
+    //should this proxy is using as master or as backup 
     bool master_flag = false;
 
     //! The globally configured Topic QoS.

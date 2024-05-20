@@ -25,10 +25,10 @@ namespace rtps {
 /**
  * This filter allows to not send messages from this Writer to the Readers belonging to the source Participant.
  * It is used in "repeater" participants in order to propagate information to external participants
- * (participants not belonging to the same DDS-Router instance),
+ * (participants not belonging to the same DDS-Proxy instance),
  * leaving out the participant from which this information was received.
  *
- * This uses the RouterCacheChange extra information.
+ * This uses the ProxyCacheChange extra information.
  */
 class RepeaterDataFilter : public SelfDataFilter
 {

@@ -47,7 +47,7 @@ public:
      *
      * @param topic: Topic of which this Bridge manages communication
      * @param participant_database: Collection of Participants to manage communication
-     * @param payload_pool: Payload Pool that handles the reservation/release of payloads throughout the DDS Router
+     * @param payload_pool: Payload Pool that handles the reservation/release of payloads throughout the DDS Proxy
      * @param thread_pool: Shared pool of threads in charge of data transmission.
      * @param enable: Whether the Bridge should be initialized as enabled
      *

@@ -25,7 +25,7 @@
 #include <ddspipe_participants/writer/rtps/CommonWriter.hpp>
 #include <ddspipe_participants/writer/rtps/filter/RepeaterDataFilter.hpp>
 #include <ddspipe_participants/writer/rtps/filter/SelfDataFilter.hpp>
-#include <ddspipe_participants/types/dds/RouterCacheChange.hpp>
+#include <ddspipe_participants/types/dds/ProxyCacheChange.hpp>
 
 namespace eprosima {
 namespace ddspipe {
@@ -215,9 +215,9 @@ utils::ReturnCode CommonWriter::fill_to_send_data_(
 {
     if (repeater_)
     {
-        // Add origin to change in case the cache change is RouterCacheChange (only in repeater mode)
-        core::types::RouterCacheChange& change_ref =
-                static_cast<core::types::RouterCacheChange&>(*to_send_change_to_fill);
+        // Add origin to change in case the cache change is ProxyCacheChange (only in repeater mode)
+        core::types::ProxyCacheChange& change_ref =
+                static_cast<core::types::ProxyCacheChange&>(*to_send_change_to_fill);
         change_ref.last_writer_guid_prefix = data.source_guid.guidPrefix;
     }
 

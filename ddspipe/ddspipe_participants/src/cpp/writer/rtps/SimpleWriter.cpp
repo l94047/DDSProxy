@@ -24,7 +24,7 @@
 #include <ddspipe_participants/writer/rtps/SimpleWriter.hpp>
 #include <ddspipe_participants/writer/rtps/filter/RepeaterDataFilter.hpp>
 #include <ddspipe_participants/writer/rtps/filter/SelfDataFilter.hpp>
-#include <ddspipe_participants/types/dds/RouterCacheChange.hpp>
+#include <ddspipe_participants/types/dds/ProxyCacheChange.hpp>
 
 namespace eprosima {
 namespace ddspipe {

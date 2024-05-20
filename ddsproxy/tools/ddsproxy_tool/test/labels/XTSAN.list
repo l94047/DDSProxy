@@ -1,8 +1,0 @@
-tool.application.ddsproxy.simple_configuration.sigint
-tool.application.ddsproxy.simple_configuration.sigint.sigterm
-tool.application.ddsproxy.ds_configuration.sigint
-tool.application.ddsproxy.ds_configuration.sigint.sigterm
-tool.application.ddsproxy.complex_configuration_v3.sigint
-tool.application.ddsproxy.complex_configuration_v3.sigint.sigterm
-tool.application.ddsproxy.wan_configuration.sigint
-tool.application.ddsproxy.wan_configuration.sigint.sigterm

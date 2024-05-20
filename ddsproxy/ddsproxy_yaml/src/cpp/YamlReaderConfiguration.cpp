@@ -69,16 +69,16 @@ YamlReaderConfiguration::load_ddsproxy_configuration(
 
         logInfo(DDSPROXY_YAML, "Loading DDSProxy configuration with version: " << version << ".");
 
-        // Load DDS Router Configuration
-        core::DdsProxyConfiguration router_configuration =
+        // Load DDS Proxy Configuration
+        core::DdsProxyConfiguration proxy_configuration =
                 ddspipe::yaml::YamlReader::get<core::DdsProxyConfiguration>(yml, version);
 
-        return router_configuration;
+        return proxy_configuration;
     }
     catch (const std::exception& e)
     {
         throw eprosima::utils::ConfigurationException(
-                  utils::Formatter() << "Error loading DDS Router configuration from yaml:\n " << e.what());
+                  utils::Formatter() << "Error loading DDS Proxy configuration from yaml:\n " << e.what());
     }
 }
 

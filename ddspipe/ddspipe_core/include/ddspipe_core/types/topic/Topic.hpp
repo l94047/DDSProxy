@@ -33,7 +33,7 @@ namespace core {
 namespace types {
 
 /**
- * Generic data struct that represents a Topic of data flow in the Router.
+ * Generic data struct that represents a Topic of data flow in the Proxy.
  */
 struct Topic : public ITopic, public IConfiguration
 {

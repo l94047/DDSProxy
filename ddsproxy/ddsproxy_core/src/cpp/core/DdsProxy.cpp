@@ -41,7 +41,7 @@ DdsProxy::DdsProxy(
     , participants_database_(new ddspipe::core::ParticipantsDatabase())
     , thread_pool_(std::make_shared<utils::SlotThreadPool>(configuration_.advanced_options.number_of_threads))
 {
-    logDebug(DDSPROXY, "Creating DDS Router.");
+    logDebug(DDSPROXY, "Creating DDS Proxy.");
 
     // Check that the configuration is correct
     utils::Formatter error_msg;
@@ -49,7 +49,7 @@ DdsProxy::DdsProxy(
     {
         throw utils::ConfigurationException(
                   utils::Formatter() <<
-                      "Configuration for DDS Router is invalid: " << error_msg);
+                      "Configuration for DDS Proxy is invalid: " << error_msg);
     }
 
     // Load Participants
@@ -63,7 +63,7 @@ DdsProxy::DdsProxy(
                         participants_database_,
                         thread_pool_));
 
-    logDebug(DDSPROXY, "DDS Router created.");
+    logDebug(DDSPROXY, "DDS Proxy created.");
 }
 
 void DdsProxy::init_participants_()
@@ -114,7 +114,7 @@ utils::ReturnCode DdsProxy::reload_configuration(
     {
         throw utils::ConfigurationException(
                   utils::Formatter() <<
-                      "Configuration for Reload DDS Router is invalid: " << error_msg);
+                      "Configuration for Reload DDS Proxy is invalid: " << error_msg);
     }
     // new_configuration.ddspipe_configuration.master_flag = new_configuration.advanced_options.master_flag;
 
@@ -127,7 +127,7 @@ utils::ReturnCode DdsProxy::start() noexcept
     utils::ReturnCode ret = ddspipe_->enable();
     if (ret == utils::ReturnCode::RETCODE_OK)
     {
-        logInfo(DDSPROXY, "Starting DDS Router.");
+        logInfo(DDSPROXY, "Starting DDS Proxy.");
     }
 
     return ret;
@@ -138,7 +138,7 @@ utils::ReturnCode DdsProxy::stop() noexcept
     utils::ReturnCode ret = ddspipe_->disable();
     if (ret == utils::ReturnCode::RETCODE_OK)
     {
-        logInfo(DDSPROXY, "Stopping DDS Router.");
+        logInfo(DDSPROXY, "Stopping DDS Proxy.");
     }
 
     return ret;

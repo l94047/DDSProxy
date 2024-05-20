@@ -29,7 +29,7 @@ namespace core {
 namespace types {
 
 /**
- * Data struct that represents a DDS Topic of data flow in the Router.
+ * Data struct that represents a DDS Topic of data flow in the Proxy.
  */
 struct DdsTopic : public DistributedTopic
 {

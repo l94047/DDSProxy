@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #include <efficiency/cache_change/CacheChangePool.hpp>
-#include <types/dds/RouterCacheChange.hpp>
+#include <types/dds/ProxyCacheChange.hpp>
 
 namespace eprosima {
 namespace ddspipe {
@@ -40,7 +40,7 @@ bool CacheChangePool::release_cache(
 
 fastrtps::rtps::CacheChange_t* CacheChangePool::new_element_()
 {
-    return new types::RouterCacheChange();
+    return new types::ProxyCacheChange();
 }
 
 } /* namespace core */

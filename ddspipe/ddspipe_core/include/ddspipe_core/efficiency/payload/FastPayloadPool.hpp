@@ -35,7 +35,7 @@ typedef std::atomic<unsigned int> MetaInfoType;
  * This class implements the interface of PayloadPool and fulfilled with it the interface of IPayloadPool from
  * eProsima Fast DDS.
  *
- * This class is used to manage the allocation and release of the payloads used within the Router.
+ * This class is used to manage the allocation and release of the payloads used within the Proxy.
  * The main target is not to copy or alloc data that is already in memory, but to reuse it safely.
  *
  * This implementation uses an idea get from TopicPayloadPool from fastrtps.

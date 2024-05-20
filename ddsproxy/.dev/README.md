@@ -1,4 +1,4 @@
-# eProsima DDS Router Developer Directory
+# eProsima DDS Proxy Developer Directory
 
 This directory and this documentation is only targeted to developers and users highly familiarized with this
 project and the repository.
@@ -18,23 +18,23 @@ the requirements or dependencies of higher level packages are not fulfilled
 
 The modules contained in this repository are the following:
 
-* **ddsproxy_core** This is the main library that implements the operation of the DDS Router.
-  The `DDSProxy` class could be instantiate and has some methods to handle the operation of a DDS Router
+* **ddsproxy_core** This is the main library that implements the operation of the DDS Proxy.
+  The `DDSProxy` class could be instantiate and has some methods to handle the operation of a DDS Proxy
   (e.g `start`, `reload`, `stop`).
   This package is divided in:
-  * `Types`: all the types that are used to configure the DDS Router and in its internal functionality.
-  * `Configuration`: Configuration classes to configure the DDS Router
+  * `Types`: all the types that are used to configure the DDS Proxy and in its internal functionality.
+  * `Configuration`: Configuration classes to configure the DDS Proxy
   * `Core`: The main functionality and internal classes. This is not exported.
 
-* **ddsproxy_yaml** This library allows to get a DDS Router configuration object from a `yaml`.
+* **ddsproxy_yaml** This library allows to get a DDS Proxy configuration object from a `yaml`.
   It depends on `yaml-cpp` external library.
 
-* **ddsproxy_tool** This is an executable that instantiates a DDS Router from a `yaml` file.
+* **ddsproxy_tool** This is an executable that instantiates a DDS Proxy from a `yaml` file.
 
 * **ddsproxy_docs** (hosted in directory `docs`)
   This package contains the user documentation built with sphinx.
 
-* **ddsproxy_yaml_validator** This is an application used for validating DDS Router `yaml` configuration files.
+* **ddsproxy_yaml_validator** This is an application used for validating DDS Proxy `yaml` configuration files.
 
 This is the dependency graph of the packages:
 
@@ -50,10 +50,10 @@ ddsproxy_tool           +
 
 The reasons of the packages division are:
 
-1. Using the DDS Router as a library will be very useful in future developments, avoiding to interact with it as an
+1. Using the DDS Proxy as a library will be very useful in future developments, avoiding to interact with it as an
   independent process.
 1. The dependencies of one package are no longer dependencies of the whole project.
-  Thus, the DDS Router could be used without requiring the `yaml` library.
+  Thus, the DDS Proxy could be used without requiring the `yaml` library.
 1. It is easier to organize and maintain small packages than a big one.
 1. In the future utils and events are intended to be generic, and not only part of this project.
   (e.g. having a common Log library for many projects would be very useful).
@@ -164,6 +164,6 @@ Also, configurations must support an `is_valid` method to check that it is in a 
 
 ### RPC in Core refactor
 
-Doing the refactor to separate DDS Router from Core we encountered a difficulty because `RPCBridge` depends on `rtps::CommonReader`.
+Doing the refactor to separate DDS Proxy from Core we encountered a difficulty because `RPCBridge` depends on `rtps::CommonReader`.
 This makes impossible so far to separate Participants from the Core.
 This should be solved in future versions by implementing a generic RPC Bridge without dependencies.

@@ -85,7 +85,7 @@ public:
             uint32_t id = 0) noexcept;
 
     /**
-     * @brief Uses Router default Guid without using ROS Discovery Server
+     * @brief Uses Proxy default Guid without using ROS Discovery Server
      *
      * @param id : number to seed for the final Guid Prefix [Default: 0]
      */

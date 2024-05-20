@@ -61,10 +61,12 @@ project(
 configure_project_cpp()
 
 # Compile C++ library
-compile_library(
+compile_tool(
     "${PROJECT_SOURCE_DIR}/src/cpp" # Source directory
-    "${PROJECT_SOURCE_DIR}/include" # Include directory
 )
+
+###############################################################################
+
 
 ###############################################################################
 # Packaging

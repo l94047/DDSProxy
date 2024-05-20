@@ -29,7 +29,7 @@ namespace core {
 namespace types {
 
 /**
- * Data struct that represents a Distributed Topic of data flow in the Router.
+ * Data struct that represents a Distributed Topic of data flow in the Proxy.
  *
  * @note this not represents a real DDS network topic, but an "abstract" distributed one.
  */

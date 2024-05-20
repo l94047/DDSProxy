@@ -95,9 +95,9 @@ constexpr const char* COLLECTION_ADDRESSES_TAG("addresses"); //! TODO: add comme
 // TLS related tags
 constexpr const char* TLS_TAG("tls"); //! TLS configuration tag
 constexpr const char* TLS_CA_TAG("ca"); //! Certificate Authority Certificate
-constexpr const char* TLS_PASSWORD_TAG("password"); //! DDS-Router Password
-constexpr const char* TLS_PRIVATE_KEY_TAG("private_key"); //! DDS-Router Certificate Private Key
-constexpr const char* TLS_CERT_TAG("cert"); //! DDS-Router Certificate
+constexpr const char* TLS_PASSWORD_TAG("password"); //! DDS-Proxy Password
+constexpr const char* TLS_PRIVATE_KEY_TAG("private_key"); //! DDS-Proxy Certificate Private Key
+constexpr const char* TLS_CERT_TAG("cert"); //! DDS-Proxy Certificate
 constexpr const char* TLS_DHPARAMS_TAG("dh_params"); //! Diffie-Hellman (DF) parameters
 constexpr const char* TLS_PEER_VERIFICATION_TAG("peer_verification"); //! Peer Verification parameter
 constexpr const char* TLS_SNI_HOST_TAG("sni_host"); //! TLS configuration tag
@@ -136,7 +136,7 @@ constexpr const char* ROUTES_DST_TAG("dst"); //! Route's destination participant
 constexpr const char* TOPIC_ROUTES_TAG("topic-routes"); // Topic specific forwarding routes
 
 // Advanced configuration
-constexpr const char* SPECS_TAG("specs"); //! Specs options for DDS Router configuration
+constexpr const char* SPECS_TAG("specs"); //! Specs options for DDS Proxy configuration
 constexpr const char* SPECS_QOS_TAG("qos"); //! Global Topic QoS
 constexpr const char* NUMBER_THREADS_TAG("threads"); //! Number of threads to configure the thread pool
 constexpr const char* WAIT_ALL_ACKED_TIMEOUT_TAG("wait-all-acked-timeout"); //! Wait for a maximum of *wait-all-acked-timeout* ms until all msgs sent by reliable writers are acknowledged by their matched readers

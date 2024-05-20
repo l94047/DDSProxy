@@ -40,7 +40,7 @@ public:
      * Bridge constructor by required values
      *
      * @param participant_database: Collection of Participants to manage communication
-     * @param payload_pool: Payload Pool that handles the reservation/release of payloads throughout the DDS Router
+     * @param payload_pool: Payload Pool that handles the reservation/release of payloads throughout the DDS Proxy
      * @param thread_pool: Shared pool of threads in charge of data transmission.
      *
      * @note Always created disabled. Enable in children constructors if needed.

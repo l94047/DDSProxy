@@ -39,7 +39,7 @@ public:
      *
      * Get the Attributes and TopicQoS and create the SpecificQoSReader History and the RTPS SpecificQoSReader.
      *
-     * @param participant_id    Router Id of the Participant that has created this SpecificQoSReader.
+     * @param participant_id    Proxy Id of the Participant that has created this SpecificQoSReader.
      * @param topic             Topic that this SpecificQoSReader subscribes to.
      * @param payload_pool      Shared Payload Pool to received data and take it.
      * @param rtps_participant  RTPS Participant pointer (this is not stored).
