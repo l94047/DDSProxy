@@ -71,64 +71,84 @@ class CdrSizeCalculator;
 
 
 /*!
- * @brief This class represents the structure KeepAlived defined by the user in the IDL file.
+ * @brief This class represents the structure ProxyKeepAlived defined by the user in the IDL file.
  * @ingroup ProxyKeepAlived
  */
-class KeepAlived
+class ProxyKeepAlived
 {
 public:
 
     /*!
      * @brief Default constructor.
      */
-    eProsima_user_DllExport KeepAlived();
+    eProsima_user_DllExport ProxyKeepAlived();
 
     /*!
      * @brief Default destructor.
      */
-    eProsima_user_DllExport ~KeepAlived();
+    eProsima_user_DllExport ~ProxyKeepAlived();
 
     /*!
      * @brief Copy constructor.
-     * @param x Reference to the object KeepAlived that will be copied.
+     * @param x Reference to the object ProxyKeepAlived that will be copied.
      */
-    eProsima_user_DllExport KeepAlived(
-            const KeepAlived& x);
+    eProsima_user_DllExport ProxyKeepAlived(
+            const ProxyKeepAlived& x);
 
     /*!
      * @brief Move constructor.
-     * @param x Reference to the object KeepAlived that will be copied.
+     * @param x Reference to the object ProxyKeepAlived that will be copied.
      */
-    eProsima_user_DllExport KeepAlived(
-            KeepAlived&& x) noexcept;
+    eProsima_user_DllExport ProxyKeepAlived(
+            ProxyKeepAlived&& x) noexcept;
 
     /*!
      * @brief Copy assignment.
-     * @param x Reference to the object KeepAlived that will be copied.
+     * @param x Reference to the object ProxyKeepAlived that will be copied.
      */
-    eProsima_user_DllExport KeepAlived& operator =(
-            const KeepAlived& x);
+    eProsima_user_DllExport ProxyKeepAlived& operator =(
+            const ProxyKeepAlived& x);
 
     /*!
      * @brief Move assignment.
-     * @param x Reference to the object KeepAlived that will be copied.
+     * @param x Reference to the object ProxyKeepAlived that will be copied.
      */
-    eProsima_user_DllExport KeepAlived& operator =(
-            KeepAlived&& x) noexcept;
+    eProsima_user_DllExport ProxyKeepAlived& operator =(
+            ProxyKeepAlived&& x) noexcept;
 
     /*!
      * @brief Comparison operator.
-     * @param x KeepAlived object to compare.
+     * @param x ProxyKeepAlived object to compare.
      */
     eProsima_user_DllExport bool operator ==(
-            const KeepAlived& x) const;
+            const ProxyKeepAlived& x) const;
 
     /*!
      * @brief Comparison operator.
-     * @param x KeepAlived object to compare.
+     * @param x ProxyKeepAlived object to compare.
      */
     eProsima_user_DllExport bool operator !=(
-            const KeepAlived& x) const;
+            const ProxyKeepAlived& x) const;
+
+    /*!
+     * @brief This function sets a value in member index
+     * @param _index New value for member index
+     */
+    eProsima_user_DllExport void index(
+            uint32_t _index);
+
+    /*!
+     * @brief This function returns the value of member index
+     * @return Value of member index
+     */
+    eProsima_user_DllExport uint32_t index() const;
+
+    /*!
+     * @brief This function returns a reference to member index
+     * @return Reference to member index
+     */
+    eProsima_user_DllExport uint32_t& index();
+
 
     /*!
      * @brief This function copies the value in member message
@@ -158,6 +178,7 @@ public:
 
 private:
 
+    uint32_t m_index{0};
     std::string m_message;
 
 };

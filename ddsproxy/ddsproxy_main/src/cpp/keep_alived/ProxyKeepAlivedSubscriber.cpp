@@ -28,7 +28,7 @@
 
 
 extern std::atomic<bool> master_flag;
-extern std::atomic<bool> heartbeat_arrived;
+std::atomic<bool> heartbeat_arrived(false);
 extern std::atomic<int> force_exit;
 extern int heartbeat_interval;
 extern int keepalived_interval;
@@ -161,13 +161,12 @@ void ProxyKeepAlivedSubscriber::SubListener::on_data_available(
         DataReader* reader)
 {
     SampleInfo info;
-    if (reader->take_next_sample(&keepalived_, &info) == ReturnCode_t::RETCODE_OK)
+    if (reader->take_next_sample(&proxykeepalived_, &info) == ReturnCode_t::RETCODE_OK)
     {
         if (info.instance_state == ALIVE_INSTANCE_STATE)
         {
             samples_++;
-            // Print your structure data here.
-            // std::cout << "Message " << keepalived_.message() << " " << " RECEIVED" << std::endl;
+            heartbeat_arrived = true;
         }
     }
 }

@@ -50,8 +50,8 @@
 #include <errno.h>
 #include <thread>
 #include <chrono>
-#include "keep_alive/HelloWorldPublisher.h"
-#include "keep_alive/HelloWorldSubscriber.h"
+#include "keep_alived/ProxyKeepAlivedPublisher.h"
+#include "keep_alived/ProxyKeepAlivedSubscriber.h"
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/publisher/DataWriter.hpp>
@@ -284,17 +284,17 @@ int main(
             while (!force_exit) {
                 if (master_flag) {
                     // Publisher.
-                    HelloWorldPublisher* mypub = new HelloWorldPublisher();
+                    ProxyKeepAlivedPublisher* mypub = new ProxyKeepAlivedPublisher();
 
                     if(mypub->init(false)) {
-                        mypub->run(0, 0);
+                        mypub->run(0,0);
                     }
 
                     delete mypub;
 
                 } else {
                     // Subscriber.
-                    HelloWorldSubscriber* mysub = new HelloWorldSubscriber();
+                    ProxyKeepAlivedSubscriber* mysub = new ProxyKeepAlivedSubscriber();
                     if (mysub->init(false)) {
                         mysub->run(0);
                     }

@@ -1,5 +1,6 @@
-struct KeepAlived
+struct ProxyKeepAlived
 {
+	unsigned long index;
 	string message;
 };
 

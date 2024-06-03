@@ -41,18 +41,18 @@
 
 
 /*!
- * @brief This class represents the TopicDataType of the type KeepAlived defined by the user in the IDL file.
+ * @brief This class represents the TopicDataType of the type ProxyKeepAlived defined by the user in the IDL file.
  * @ingroup ProxyKeepAlived
  */
-class KeepAlivedPubSubType : public eprosima::fastdds::dds::TopicDataType
+class ProxyKeepAlivedPubSubType : public eprosima::fastdds::dds::TopicDataType
 {
 public:
 
-    typedef KeepAlived type;
+    typedef ProxyKeepAlived type;
 
-    eProsima_user_DllExport KeepAlivedPubSubType();
+    eProsima_user_DllExport ProxyKeepAlivedPubSubType();
 
-    eProsima_user_DllExport ~KeepAlivedPubSubType() override;
+    eProsima_user_DllExport ~ProxyKeepAlivedPubSubType() override;
 
     eProsima_user_DllExport bool serialize(
             void* data,

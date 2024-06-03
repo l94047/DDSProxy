@@ -38,6 +38,9 @@ using HistoryDepthType = unsigned int;
 //! Ownership configuration
 using OwnershipQosPolicyKind = eprosima::fastdds::dds::OwnershipQosPolicyKind;
 
+// TransportPriority kind enumeration
+using TransportPrioritykind = unsigned int;
+
 /**
  * The collection of QoS related to a Topic.
  *
@@ -120,7 +123,8 @@ TopicQoS
             HistoryDepthType history_depth = DEFAULT_HISTORY_DEPTH,
             float max_tx_rate = DEFAULT_MAX_TX_RATE,
             float max_rx_rate = DEFAULT_MAX_RX_RATE,
-            unsigned int downsampling = DEFAULT_DOWNSAMPLING) noexcept;
+            unsigned int downsampling = DEFAULT_DOWNSAMPLING,
+            TransportPrioritykind transport_priority = DEFAULT_TRANSPORT_PRIORITY) noexcept;
 
     /////////////////////////
     // VARIABLES
@@ -152,6 +156,9 @@ TopicQoS
 
     //! Downsampling factor: keep 1 out of every *downsampling* samples received (downsampling=1 <=> no downsampling)
     utils::Fuzzy<unsigned int> downsampling;
+
+    //topic priority
+    utils::Fuzzy<TransportPrioritykind> transport_priority;
 
     /////////////////////////
     // GLOBAL VARIABLES
@@ -200,6 +207,10 @@ TopicQoS
     //! Downsampling (Default = 1)
     DDSPIPE_CORE_DllAPI
     static constexpr const unsigned int DEFAULT_DOWNSAMPLING = 1;
+
+    //! TransportPrioritykind (Default = 0)
+    DDSPIPE_CORE_DllAPI
+    static constexpr const TransportPrioritykind DEFAULT_TRANSPORT_PRIORITY = 0;
 };
 
 /**

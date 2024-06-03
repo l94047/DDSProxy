@@ -149,7 +149,7 @@ void SlotThreadPool::slot(
 utils::event::AwakeReason SlotThreadPool::wait_all_consumed(
         const utils::Duration_ms& timeout /* = 0 */)
 {
-    return task_queue_priority_.wait_all_consumed(timeout);
+    return task_queue_priority_0.wait_all_consumed(timeout);
 }
 
 void SlotThreadPool::thread_routine_()
@@ -168,7 +168,11 @@ void SlotThreadPool::thread_routine_()
                 task_id = task_queue_priority_0.consume();
             }else
             {
-                task_id = task_queue_priority_1.consume();
+                task_id = task_queue_priority_1.consume(1);
+                // logDebug(UTILS_THREAD_POOL, task_id);
+                if(task_id == 0){
+                    continue;
+                }
             }
 
             // TaskId task_id = task_queue_.consume();

@@ -249,6 +249,8 @@ protected:
 
     utils::TaskId transmit_task_id_;
 
+    const unsigned int transport_priority_id_;
+
     std::shared_ptr<utils::SlotThreadPool> thread_pool_;
 
     static const unsigned int MAX_MESSAGES_TRANSMIT_LOOP_;

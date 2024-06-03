@@ -69,7 +69,7 @@ T ConsumerWaitHandler<T>::consume(
     }
     else if (reason == AwakeReason::timeout)
     {
-        throw utils::TimeoutException("ConsumerWaitHandler awaken by timeout.");
+        return 0;
     }
     else
     {
