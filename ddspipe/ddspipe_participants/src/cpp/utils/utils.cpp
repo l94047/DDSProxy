@@ -43,10 +43,12 @@ core::types::Endpoint create_common_endpoint_from_info_(
     if (info.info.m_qos.m_reliability.kind == fastdds::dds::BEST_EFFORT_RELIABILITY_QOS)
     {
         endpoint.topic.topic_qos.reliability_qos.set_value(fastrtps::rtps::BEST_EFFORT);
+        endpoint.topic.topic_qos.transport_priority.set_value(1);
     }
     else if (info.info.m_qos.m_reliability.kind == fastdds::dds::RELIABLE_RELIABILITY_QOS)
     {
         endpoint.topic.topic_qos.reliability_qos.set_value(fastrtps::rtps::RELIABLE);
+        endpoint.topic.topic_qos.transport_priority.set_value(0);
     }
     else
     {

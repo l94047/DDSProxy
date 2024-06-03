@@ -161,13 +161,11 @@ void ProxyKeepAlivedSubscriber::SubListener::on_data_available(
         DataReader* reader)
 {
     SampleInfo info;
-    if (reader->take_next_sample(&keepalived_, &info) == ReturnCode_t::RETCODE_OK)
+    if (reader->take_next_sample(&proxykeepalived_, &info) == ReturnCode_t::RETCODE_OK)
     {
         if (info.instance_state == ALIVE_INSTANCE_STATE)
         {
             samples_++;
-            // Print your structure data here.
-            // std::cout << "Message " << keepalived_.message() << " " << " RECEIVED" << std::endl;
         }
     }
 }

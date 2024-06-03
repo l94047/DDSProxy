@@ -66,13 +66,6 @@ install(
 ###############################################################################
 # Install test files
 ###############################################################################
-# Install test required files
-install(
-    DIRECTORY
-        test_installer
-    DESTINATION
-        ${MODULE_DATA_INSTALL_DIR}/${PROJECT_NAME}
-)
 
 ###############################################################################
 # Create CMake package config file

@@ -24,8 +24,8 @@
 
 #include "ProxyKeepAlived.h"
 
-constexpr uint32_t KeepAlived_max_cdr_typesize {264UL};
-constexpr uint32_t KeepAlived_max_key_cdr_typesize {0UL};
+constexpr uint32_t ProxyKeepAlived_max_cdr_typesize {264UL};
+constexpr uint32_t ProxyKeepAlived_max_key_cdr_typesize {0UL};
 
 
 namespace eprosima {
@@ -38,7 +38,7 @@ class CdrSizeCalculator;
 
 eProsima_user_DllExport void serialize_key(
         eprosima::fastcdr::Cdr& scdr,
-        const KeepAlived& data);
+        const ProxyKeepAlived& data);
 
 
 } // namespace fastcdr

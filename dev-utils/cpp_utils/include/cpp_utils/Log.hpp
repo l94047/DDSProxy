@@ -57,7 +57,7 @@ using LogConsumer = eprosima::fastdds::dds::LogConsumer;
  */
 #define logUser(cat, msg) std::cout /* << STRINGIFY(cat) << " : " */ << msg << std::endl;
 
-#define FASTDDS_ENFORCE_LOG_INFO  1
+
 // Allow multiconfig platforms like windows to disable info queueing on Release and other non-debug configs
 #if !HAVE_LOG_NO_INFO &&  \
     (defined(FASTDDS_ENFORCE_LOG_INFO) || \

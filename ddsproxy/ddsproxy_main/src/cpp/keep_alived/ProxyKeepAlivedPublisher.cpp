@@ -45,7 +45,7 @@ ProxyKeepAlivedPublisher::ProxyKeepAlivedPublisher()
 bool ProxyKeepAlivedPublisher::init(
         bool use_env)
 {
-    keepalived_.message("DDS_Keepalived");
+    proxykeepalived_.message("DDS_Keepalived");
     DomainParticipantQos pqos = PARTICIPANT_QOS_DEFAULT;
     pqos.name("Participant_pub");
     auto factory = DomainParticipantFactory::get_instance();
@@ -183,7 +183,7 @@ bool ProxyKeepAlivedPublisher::publish(
 {
     if (listener_.firstConnected_ || !waitForListener || listener_.matched_ > 0)
     {
-        writer_->write(&keepalived_);
+        writer_->write(&proxykeepalived_);
         return true;
     }
     return false;

@@ -39,50 +39,50 @@ using namespace eprosima::fastcdr::exception;
 
 
 
-KeepAlived::KeepAlived()
+ProxyKeepAlived::ProxyKeepAlived()
 {
 }
 
-KeepAlived::~KeepAlived()
+ProxyKeepAlived::~ProxyKeepAlived()
 {
 }
 
-KeepAlived::KeepAlived(
-        const KeepAlived& x)
+ProxyKeepAlived::ProxyKeepAlived(
+        const ProxyKeepAlived& x)
 {
     m_message = x.m_message;
 }
 
-KeepAlived::KeepAlived(
-        KeepAlived&& x) noexcept
+ProxyKeepAlived::ProxyKeepAlived(
+        ProxyKeepAlived&& x) noexcept
 {
     m_message = std::move(x.m_message);
 }
 
-KeepAlived& KeepAlived::operator =(
-        const KeepAlived& x)
+ProxyKeepAlived& ProxyKeepAlived::operator =(
+        const ProxyKeepAlived& x)
 {
 
     m_message = x.m_message;
     return *this;
 }
 
-KeepAlived& KeepAlived::operator =(
-        KeepAlived&& x) noexcept
+ProxyKeepAlived& ProxyKeepAlived::operator =(
+        ProxyKeepAlived&& x) noexcept
 {
 
     m_message = std::move(x.m_message);
     return *this;
 }
 
-bool KeepAlived::operator ==(
-        const KeepAlived& x) const
+bool ProxyKeepAlived::operator ==(
+        const ProxyKeepAlived& x) const
 {
     return (m_message == x.m_message);
 }
 
-bool KeepAlived::operator !=(
-        const KeepAlived& x) const
+bool ProxyKeepAlived::operator !=(
+        const ProxyKeepAlived& x) const
 {
     return !(*this == x);
 }
@@ -91,7 +91,7 @@ bool KeepAlived::operator !=(
  * @brief This function copies the value in member message
  * @param _message New value to be copied in member message
  */
-void KeepAlived::message(
+void ProxyKeepAlived::message(
         const std::string& _message)
 {
     m_message = _message;
@@ -101,7 +101,7 @@ void KeepAlived::message(
  * @brief This function moves the value in member message
  * @param _message New value to be moved in member message
  */
-void KeepAlived::message(
+void ProxyKeepAlived::message(
         std::string&& _message)
 {
     m_message = std::move(_message);
@@ -111,7 +111,7 @@ void KeepAlived::message(
  * @brief This function returns a constant reference to member message
  * @return Constant reference to member message
  */
-const std::string& KeepAlived::message() const
+const std::string& ProxyKeepAlived::message() const
 {
     return m_message;
 }
@@ -120,7 +120,7 @@ const std::string& KeepAlived::message() const
  * @brief This function returns a reference to member message
  * @return Reference to member message
  */
-std::string& KeepAlived::message()
+std::string& ProxyKeepAlived::message()
 {
     return m_message;
 }

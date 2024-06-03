@@ -1,4 +1,4 @@
-struct KeepAlived
+struct ProxyKeepAlived
 {
 	string message;
 };

@@ -42,11 +42,12 @@ public:
     bool publish(
             bool waitForListener = true);
 
-    void run(uint32_t sleep);
+    void run(
+            uint32_t sleep);
 
 private:
 
-    KeepAlived keepalived_;
+    ProxyKeepAlived proxykeepalived_;
 
     eprosima::fastdds::dds::DomainParticipant* participant_;
 

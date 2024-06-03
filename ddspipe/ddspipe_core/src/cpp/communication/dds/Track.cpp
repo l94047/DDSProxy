@@ -51,6 +51,7 @@ Track::Track(
     , data_available_status_(DataAvailableStatus::no_more_data)
     , transmit_task_id_(utils::new_unique_task_id())
     , thread_pool_(thread_pool)
+    , transport_priority_id_(topic->topic_qos.transport_priority)
 {
     logDebug(DDSPIPE_TRACK, "Creating Track " << *this << ".");
 
@@ -201,7 +202,7 @@ void Track::data_available_() noexcept
         {
             // no_more_data was set as current status, so no thread was running
             // (and will not start as 2 is set as new current status)
-            thread_pool_->emit(transmit_task_id_);
+            thread_pool_->emit_by_priority(transmit_task_id_, transport_priority_id_);
             logDebug(DDSPIPE_TRACK, "Track " << *this << " send callback to queue.");
         }
     }

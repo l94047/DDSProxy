@@ -31,24 +31,24 @@ using DataRepresentationId_t = eprosima::fastdds::dds::DataRepresentationId_t;
 
 
 
-KeepAlivedPubSubType::KeepAlivedPubSubType()
+ProxyKeepAlivedPubSubType::ProxyKeepAlivedPubSubType()
 {
-    setName("KeepAlived");
+    setName("ProxyKeepAlived");
     uint32_t type_size =
 #if FASTCDR_VERSION_MAJOR == 1
-        static_cast<uint32_t>(KeepAlived::getMaxCdrSerializedSize());
+        static_cast<uint32_t>(ProxyKeepAlived::getMaxCdrSerializedSize());
 #else
-        KeepAlived_max_cdr_typesize;
+        ProxyKeepAlived_max_cdr_typesize;
 #endif
     type_size += static_cast<uint32_t>(eprosima::fastcdr::Cdr::alignment(type_size, 4)); /* possible submessage alignment */
     m_typeSize = type_size + 4; /*encapsulation*/
     m_isGetKeyDefined = false;
-    uint32_t keyLength = KeepAlived_max_key_cdr_typesize > 16 ? KeepAlived_max_key_cdr_typesize : 16;
+    uint32_t keyLength = ProxyKeepAlived_max_key_cdr_typesize > 16 ? ProxyKeepAlived_max_key_cdr_typesize : 16;
     m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
     memset(m_keyBuffer, 0, keyLength);
 }
 
-KeepAlivedPubSubType::~KeepAlivedPubSubType()
+ProxyKeepAlivedPubSubType::~ProxyKeepAlivedPubSubType()
 {
     if (m_keyBuffer != nullptr)
     {
@@ -56,12 +56,12 @@ KeepAlivedPubSubType::~KeepAlivedPubSubType()
     }
 }
 
-bool KeepAlivedPubSubType::serialize(
+bool ProxyKeepAlivedPubSubType::serialize(
         void* data,
         SerializedPayload_t* payload,
         DataRepresentationId_t data_representation)
 {
-    KeepAlived* p_type = static_cast<KeepAlived*>(data);
+    ProxyKeepAlived* p_type = static_cast<ProxyKeepAlived*>(data);
 
     // Object that manages the raw buffer.
     eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
@@ -98,14 +98,14 @@ bool KeepAlivedPubSubType::serialize(
     return true;
 }
 
-bool KeepAlivedPubSubType::deserialize(
+bool ProxyKeepAlivedPubSubType::deserialize(
         SerializedPayload_t* payload,
         void* data)
 {
     try
     {
         // Convert DATA to pointer of your type
-        KeepAlived* p_type = static_cast<KeepAlived*>(data);
+        ProxyKeepAlived* p_type = static_cast<ProxyKeepAlived*>(data);
 
         // Object that manages the raw buffer.
         eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
@@ -132,7 +132,7 @@ bool KeepAlivedPubSubType::deserialize(
     return true;
 }
 
-std::function<uint32_t()> KeepAlivedPubSubType::getSerializedSizeProvider(
+std::function<uint32_t()> ProxyKeepAlivedPubSubType::getSerializedSizeProvider(
         void* data,
         DataRepresentationId_t data_representation)
 {
@@ -140,7 +140,7 @@ std::function<uint32_t()> KeepAlivedPubSubType::getSerializedSizeProvider(
            {
 #if FASTCDR_VERSION_MAJOR == 1
                static_cast<void>(data_representation);
-               return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<KeepAlived*>(data))) +
+               return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<ProxyKeepAlived*>(data))) +
                       4u /*encapsulation*/;
 #else
                try
@@ -150,7 +150,7 @@ std::function<uint32_t()> KeepAlivedPubSubType::getSerializedSizeProvider(
                        eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
                    size_t current_alignment {0};
                    return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                               *static_cast<KeepAlived*>(data), current_alignment)) +
+                               *static_cast<ProxyKeepAlived*>(data), current_alignment)) +
                            4u /*encapsulation*/;
                }
                catch (eprosima::fastcdr::exception::Exception& /*exception*/)
@@ -161,18 +161,18 @@ std::function<uint32_t()> KeepAlivedPubSubType::getSerializedSizeProvider(
            };
 }
 
-void* KeepAlivedPubSubType::createData()
+void* ProxyKeepAlivedPubSubType::createData()
 {
-    return reinterpret_cast<void*>(new KeepAlived());
+    return reinterpret_cast<void*>(new ProxyKeepAlived());
 }
 
-void KeepAlivedPubSubType::deleteData(
+void ProxyKeepAlivedPubSubType::deleteData(
         void* data)
 {
-    delete(reinterpret_cast<KeepAlived*>(data));
+    delete(reinterpret_cast<ProxyKeepAlived*>(data));
 }
 
-bool KeepAlivedPubSubType::getKey(
+bool ProxyKeepAlivedPubSubType::getKey(
         void* data,
         InstanceHandle_t* handle,
         bool force_md5)
@@ -182,11 +182,11 @@ bool KeepAlivedPubSubType::getKey(
         return false;
     }
 
-    KeepAlived* p_type = static_cast<KeepAlived*>(data);
+    ProxyKeepAlived* p_type = static_cast<ProxyKeepAlived*>(data);
 
     // Object that manages the raw buffer.
     eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
-            KeepAlived_max_key_cdr_typesize);
+            ProxyKeepAlived_max_key_cdr_typesize);
 
     // Object that serializes the data.
     eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS, eprosima::fastcdr::CdrVersion::XCDRv1);
@@ -195,7 +195,7 @@ bool KeepAlivedPubSubType::getKey(
 #else
     eprosima::fastcdr::serialize_key(ser, *p_type);
 #endif // FASTCDR_VERSION_MAJOR == 1
-    if (force_md5 || KeepAlived_max_key_cdr_typesize > 16)
+    if (force_md5 || ProxyKeepAlived_max_key_cdr_typesize > 16)
     {
         m_md5.init();
 #if FASTCDR_VERSION_MAJOR == 1

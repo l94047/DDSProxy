@@ -27,7 +27,7 @@ namespace utils {
 
 TaskId new_unique_task_id()
 {
-    static std::atomic<TaskId> unique_task_id_{0};
+    static std::atomic<TaskId> unique_task_id_{1};
     return unique_task_id_++;
 }
 

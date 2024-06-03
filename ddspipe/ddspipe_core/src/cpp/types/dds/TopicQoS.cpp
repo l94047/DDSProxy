@@ -51,7 +51,8 @@ bool TopicQoS::operator ==(
         this->keyed == other.keyed &&
         this->max_tx_rate == other.max_tx_rate &&
         this->max_rx_rate == other.max_rx_rate &&
-        this->downsampling == other.downsampling;
+        this->downsampling == other.downsampling &&
+        this->transport_priority == other.transport_priority;
 }
 
 bool TopicQoS::is_reliable() const noexcept
@@ -122,6 +123,11 @@ void TopicQoS::set_qos(
     {
         downsampling.set_value(qos.downsampling.get_value(), fuzzy_level);
     }
+
+    if(transport_priority.get_level() < fuzzy_level && qos.transport_priority.is_set())
+    {
+        transport_priority.set_value(qos.transport_priority.get_value(), fuzzy_level);
+    }
 }
 
 void TopicQoS::set_default_qos(
@@ -133,7 +139,8 @@ void TopicQoS::set_default_qos(
         HistoryDepthType history_depth /*= DEFAULT_HISTORY_DEPTH */,
         float max_tx_rate /*= DEFAULT_MAX_TX_RATE */,
         float max_rx_rate /*= DEFAULT_MAX_RX_RATE */,
-        unsigned int downsampling /*= DEFAULT_DOWNSAMPLING */) noexcept
+        unsigned int downsampling /*= DEFAULT_DOWNSAMPLING */,
+        TransportPrioritykind transport_priority /*= DEFAULT_TRANSPORT_PRIORITY*/) noexcept
 {
     // The default values must be received as arguments. Otherwise, Ubuntu 20.04 Debug does not compile.
     this->durability_qos.set_value(durability_qos, utils::FuzzyLevelValues::fuzzy_level_default);
@@ -145,6 +152,7 @@ void TopicQoS::set_default_qos(
     this->max_tx_rate.set_value(max_tx_rate, utils::FuzzyLevelValues::fuzzy_level_default);
     this->max_rx_rate.set_value(max_rx_rate, utils::FuzzyLevelValues::fuzzy_level_default);
     this->downsampling.set_value(downsampling, utils::FuzzyLevelValues::fuzzy_level_default);
+    this->transport_priority.set_value(transport_priority, utils::FuzzyLevelValues::fuzzy_level_default);
 }
 
 std::ostream& operator <<(
@@ -260,6 +268,7 @@ std::ostream& operator <<(
         ";max_tx_rate(" << qos.max_tx_rate << ")" <<
         ";max_rx_rate(" << qos.max_rx_rate << ")" <<
         ";downsampling(" << qos.downsampling << ")" <<
+        ";transport_priority(" <<qos.transport_priority << ")" <<
         "}";
 
     return os;
