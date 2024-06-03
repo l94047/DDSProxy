@@ -50,12 +50,14 @@ ProxyKeepAlived::~ProxyKeepAlived()
 ProxyKeepAlived::ProxyKeepAlived(
         const ProxyKeepAlived& x)
 {
+    m_index = x.m_index;
     m_message = x.m_message;
 }
 
 ProxyKeepAlived::ProxyKeepAlived(
         ProxyKeepAlived&& x) noexcept
 {
+    m_index = x.m_index;
     m_message = std::move(x.m_message);
 }
 
@@ -63,6 +65,7 @@ ProxyKeepAlived& ProxyKeepAlived::operator =(
         const ProxyKeepAlived& x)
 {
 
+    m_index = x.m_index;
     m_message = x.m_message;
     return *this;
 }
@@ -71,6 +74,7 @@ ProxyKeepAlived& ProxyKeepAlived::operator =(
         ProxyKeepAlived&& x) noexcept
 {
 
+    m_index = x.m_index;
     m_message = std::move(x.m_message);
     return *this;
 }
@@ -78,7 +82,8 @@ ProxyKeepAlived& ProxyKeepAlived::operator =(
 bool ProxyKeepAlived::operator ==(
         const ProxyKeepAlived& x) const
 {
-    return (m_message == x.m_message);
+    return (m_index == x.m_index &&
+           m_message == x.m_message);
 }
 
 bool ProxyKeepAlived::operator !=(
@@ -86,6 +91,35 @@ bool ProxyKeepAlived::operator !=(
 {
     return !(*this == x);
 }
+
+/*!
+ * @brief This function sets a value in member index
+ * @param _index New value for member index
+ */
+void ProxyKeepAlived::index(
+        uint32_t _index)
+{
+    m_index = _index;
+}
+
+/*!
+ * @brief This function returns the value of member index
+ * @return Value of member index
+ */
+uint32_t ProxyKeepAlived::index() const
+{
+    return m_index;
+}
+
+/*!
+ * @brief This function returns a reference to member index
+ * @return Reference to member index
+ */
+uint32_t& ProxyKeepAlived::index()
+{
+    return m_index;
+}
+
 
 /*!
  * @brief This function copies the value in member message

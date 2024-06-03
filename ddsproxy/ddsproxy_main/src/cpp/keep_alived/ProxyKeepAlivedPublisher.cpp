@@ -45,6 +45,7 @@ ProxyKeepAlivedPublisher::ProxyKeepAlivedPublisher()
 bool ProxyKeepAlivedPublisher::init(
         bool use_env)
 {
+    proxykeepalived_.index(0);
     proxykeepalived_.message("DDS_Keepalived");
     DomainParticipantQos pqos = PARTICIPANT_QOS_DEFAULT;
     pqos.name("Participant_pub");
@@ -161,9 +162,43 @@ void ProxyKeepAlivedPublisher::PubListener::on_publication_matched(
     }
 }
 
+void ProxyKeepAlivedPublisher::runThread(
+        uint32_t samples,
+        uint32_t sleep)
+{
+    if (samples == 0)
+    {
+        while (!stop_)
+        {
+            if (publish(false))
+            {
+                std::cout << "Message: " << proxykeepalived_.message() << " with index: " << proxykeepalived_.index()
+                          << " SENT" << std::endl;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
+        }
+    }
+    else
+    {
+        for (uint32_t i = 0; i < samples; ++i)
+        {
+            if (!publish())
+            {
+                --i;
+            }
+            else
+            {
+                std::cout << "Message: " << proxykeepalived_.message() << " with index: " << proxykeepalived_.index()
+                          << " SENT" << std::endl;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
+        }
+    }
+}
 
 // Sleep for heartbeat_interval.
 void ProxyKeepAlivedPublisher::run(
+        uint32_t samples,
         uint32_t sleep)
 {
     std::cout << "Start publishing heartbeat DDS messages.\n";

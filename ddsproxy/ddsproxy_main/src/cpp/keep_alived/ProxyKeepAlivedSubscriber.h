@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * @file ProxyKeepAlivedSubscriber.h
+*/
 
 #ifndef PROXYKEEPALIVEDSUBSCRIBER_H_
 #define PROXYKEEPALIVEDSUBSCRIBER_H_
@@ -53,8 +56,6 @@ private:
     eprosima::fastdds::dds::DataReader* reader_;
 
     eprosima::fastdds::dds::TypeSupport type_;
-
-    std::atomic<bool> heartbeat_arrived{false};
 
     class SubListener : public eprosima::fastdds::dds::DataReaderListener
     {

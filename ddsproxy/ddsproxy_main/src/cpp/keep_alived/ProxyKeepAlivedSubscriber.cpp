@@ -28,7 +28,7 @@
 
 
 extern std::atomic<bool> master_flag;
-extern std::atomic<bool> heartbeat_arrived;
+std::atomic<bool> heartbeat_arrived(false);
 extern std::atomic<int> force_exit;
 extern int heartbeat_interval;
 extern int keepalived_interval;
@@ -166,6 +166,7 @@ void ProxyKeepAlivedSubscriber::SubListener::on_data_available(
         if (info.instance_state == ALIVE_INSTANCE_STATE)
         {
             samples_++;
+            heartbeat_arrived = true;
         }
     }
 }

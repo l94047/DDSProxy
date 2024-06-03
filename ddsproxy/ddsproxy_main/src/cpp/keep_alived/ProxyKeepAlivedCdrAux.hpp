@@ -24,7 +24,7 @@
 
 #include "ProxyKeepAlived.h"
 
-constexpr uint32_t ProxyKeepAlived_max_cdr_typesize {264UL};
+constexpr uint32_t ProxyKeepAlived_max_cdr_typesize {268UL};
 constexpr uint32_t ProxyKeepAlived_max_key_cdr_typesize {0UL};
 
 

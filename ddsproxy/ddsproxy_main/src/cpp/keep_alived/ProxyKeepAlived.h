@@ -131,6 +131,26 @@ public:
             const ProxyKeepAlived& x) const;
 
     /*!
+     * @brief This function sets a value in member index
+     * @param _index New value for member index
+     */
+    eProsima_user_DllExport void index(
+            uint32_t _index);
+
+    /*!
+     * @brief This function returns the value of member index
+     * @return Value of member index
+     */
+    eProsima_user_DllExport uint32_t index() const;
+
+    /*!
+     * @brief This function returns a reference to member index
+     * @return Reference to member index
+     */
+    eProsima_user_DllExport uint32_t& index();
+
+
+    /*!
      * @brief This function copies the value in member message
      * @param _message New value to be copied in member message
      */
@@ -158,6 +178,7 @@ public:
 
 private:
 
+    uint32_t m_index{0};
     std::string m_message;
 
 };

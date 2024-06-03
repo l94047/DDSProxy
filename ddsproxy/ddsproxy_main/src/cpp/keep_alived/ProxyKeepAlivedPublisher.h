@@ -43,6 +43,7 @@ public:
             bool waitForListener = true);
 
     void run(
+            uint32_t number,
             uint32_t sleep);
 
 private:
@@ -82,6 +83,10 @@ private:
         bool firstConnected_;
     }
     listener_;
+
+    void runThread(
+            uint32_t number,
+            uint32_t sleep);
 
     eprosima::fastdds::dds::TypeSupport type_;
 };

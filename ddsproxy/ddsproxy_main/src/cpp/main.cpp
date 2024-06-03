@@ -287,7 +287,7 @@ int main(
                     ProxyKeepAlivedPublisher* mypub = new ProxyKeepAlivedPublisher();
 
                     if(mypub->init(false)) {
-                        mypub->run(0);
+                        mypub->run(0,0);
                     }
 
                     delete mypub;
