@@ -199,8 +199,8 @@ ProcessReturnCode parse_arguments(
     // No required arguments
     if (argc > 0)
     {
-        argc -= (argc > 0); // reduce arg count of program name if present
-        argv += (argc > 0); // skip program name argv[0] if present
+        // argc -= (argc > 0); // reduce arg count of program name if present
+        // argv += (argc > 0); // skip program name argv[0] if present
 
         option::Stats stats(usage, argc, argv);
         std::vector<option::Option> options(stats.options_max);
