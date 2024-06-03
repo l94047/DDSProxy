@@ -38,6 +38,39 @@
 #include "user_interface/arguments_configuration.hpp"
 #include "user_interface/ProcessReturnCode.hpp"
 
+// Keepalived Needed Headers
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <error.h>
+#include <errno.h>
+#include <thread>
+#include <chrono>
+#include "keep_alive/HelloWorldPublisher.h"
+#include "keep_alive/HelloWorldSubscriber.h"
+#include <fastdds/dds/domain/DomainParticipant.hpp>
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
+#include <fastdds/dds/publisher/DataWriter.hpp>
+#include <fastdds/dds/publisher/DataWriterListener.hpp>
+#include <fastdds/dds/publisher/Publisher.hpp>
+#include <fastdds/dds/topic/TypeSupport.hpp>
+
+extern std::atomic<bool> master_flag;
+// std::atomic<bool> heartbeat_arrived;
+std::atomic<int> force_exit{0};
+int keepalived_interval;
+short peer_port, local_port;
+struct sockaddr_in peer, local;
+int heartbeat_interval = 50;
+
+#define HEARTBEAT		"DDS MASTER SPEAKING!"
+#define MAX_ERRORS		10
+
+using namespace eprosima::fastdds::dds;
 using namespace eprosima;
 using namespace eprosima::ddsproxy;
 
@@ -45,6 +78,33 @@ int main(
         int argc,
         char** argv)
 {
+     /* ddsproxy <master|slave> <max_interval>   */
+	// Skip command.
+	argc -= (argc > 0); 
+	argv += (argc > 0);
+
+	// Master or Slave
+	if (strcmp(argv[0], "master") == 0) {
+		master_flag = true;
+		printf("master!!!!\n");
+
+	} else if (strcmp(argv[0], "slave") == 0) {
+		master_flag = false;
+		printf("slave!!!!!\n");
+	}
+
+	argc--;
+	argv++;
+
+    if (!master_flag) {
+        keepalived_interval = atoi(argv[0]);
+        printf("keepalived_interval = %d\n", keepalived_interval);
+
+        argc--;
+        argv++;
+    }
+	// Parse keepalived interval.
+
     // Configuration File path
     std::string file_path = "";
 
@@ -219,6 +279,31 @@ int main(
                             reload_time);
         }
 
+
+        std::thread alive_topic([&]() {
+            while (!force_exit) {
+                if (master_flag) {
+                    // Publisher.
+                    HelloWorldPublisher* mypub = new HelloWorldPublisher();
+
+                    if(mypub->init(false)) {
+                        mypub->run(0, 0);
+                    }
+
+                    delete mypub;
+
+                } else {
+                    // Subscriber.
+                    HelloWorldSubscriber* mysub = new HelloWorldSubscriber();
+                    if (mysub->init(false)) {
+                        mysub->run(0);
+                    }
+                    delete mysub;
+                }
+            }
+            return 0;
+        });
+
         // Start proxy
         proxy.start();
 
@@ -240,6 +325,11 @@ int main(
             file_watcher_handler.reset();
         }
 
+        // Stop keepalive thread.
+		force_exit = 1;
+		// alive_thread.join();
+        alive_topic.join();
+        
         // Stop proxy
         proxy.stop();
 

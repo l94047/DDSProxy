@@ -24,6 +24,8 @@
 
 #include <ddspipe_core/communication/dds/Track.hpp>
 
+std::atomic<bool> master_flag;
+
 namespace eprosima {
 namespace ddspipe {
 namespace core {
@@ -218,7 +220,7 @@ void Track::transmit_() noexcept
     // TODO: Count the times it loops to break it at some point if needed
     while (should_transmit_())
     {
-        if(!master_flag_){
+        if(!master_flag){
             continue;
         }
         // It starts transmitting, so it sets the data available status as transmitting
